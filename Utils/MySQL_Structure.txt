@@ -1,0 +1,66 @@
+
+Table : articles
+- id (int)
+- nom_article (varchar(64))
+- prix_achat (decimal(10,2))
+- prix_vente (decimal(10,2))
+- stock (int)
+- disponible (tinyint(1))
+- stock_lent (tinyint(1))
+- fournisseur_id (int)
+- gencode (varchar(13))
+==================================
+Table : bons
+- id (int)
+- client_id (int)
+- type_bon (int)
+==================================
+Table : clients
+- id (int)
+- nom (varchar(32))
+- prenom (varchar(32))
+- adresse (varchar(256))
+- telephone (varchar(20))
+==================================
+Table : commandes_fournisseurs
+- id (int)
+- fournisseur_id (int)
+- status (boolean) [0 = En cours | 1 = Passée]
+- date (datetime)
+- agent_id (int)
+
+==================================
+Table : panier_fournisseurs
+- commande_id (int)
+- id (int)
+- article_id (int)
+- quantite (int)
+==================================
+Table : fournisseurs
+- id (int)
+- nom_fournisseur (varchar(64))
+- adresse (varchar(256))
+- telephone (varchar(32))
+==================================
+Table : panier_clients
+- id (int)
+- bon_id (int)
+- article_id (int)
+- quantite (int)
+==================================
+
+Table : role
+- id (int)
+- role_name (varchar(32))
+==================================
+Table : type_bon
+- id_bon (int)
+- type_bon (varchar(20))
+==================================
+Table : users
+- id (int)
+- username (varchar(32))
+- password (varchar(64))
+- role (int)
+==================================
+

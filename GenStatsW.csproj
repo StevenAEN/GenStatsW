@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ressources\article_icon.png" />
+    <None Remove="ressources\client_icon.png" />
+    <None Remove="ressources\fournisseur_icon.png" />
+    <None Remove="ressources\lock.png" />
+    <None Remove="ressources\loginWindow.png" />
+    <None Remove="ressources\logo.png" />
+    <None Remove="ressources\logo_fixed.png" />
+    <None Remove="ressources\orders_icon.png" />
+    <None Remove="ressources\stats_icon.png" />
+    <None Remove="ressources\truck_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DataGridExtensions" Version="2.5.14" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.0" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.11.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.Modern" Version="4.11.0" />
+    <PackageReference Include="MahApps.Metro.Resources" Version="0.6.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.33" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\..\..\Downloads\wpftoolkit-master\wpftoolkit-master\ExtendedWPFToolkitSolution\Libs\NET35\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ressources\article_icon.png" />
+    <Resource Include="ressources\client_icon.png" />
+    <Resource Include="ressources\fournisseur_icon.png" />
+    <Resource Include="ressources\lock.png" />
+    <Resource Include="ressources\loginWindow.png" />
+    <Resource Include="ressources\logo.png" />
+    <Resource Include="ressources\logo_fixed.png" />
+    <Resource Include="ressources\orders_icon.png" />
+    <Resource Include="ressources\stats_icon.png" />
+    <Resource Include="ressources\truck_icon.png" />
+  </ItemGroup>
+
+</Project>

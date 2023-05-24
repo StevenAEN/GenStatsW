@@ -1,0 +1,20 @@
+﻿<Window x:Class="GenStatsW.Dialogs.ModifierQuantiteDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Modifier Quantité" Height="151" Width="205">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Quantité" Margin="10"/>
+        <TextBox Grid.Row="1" Margin="10" Width="100" Text="{Binding Quantite, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="ValiderButton" Content="Valider" Width="80" Margin="5" Click="ValiderButton_Click"/>
+            <Button x:Name="AnnulerButton" Content="Annuler" Width="80" Margin="5" Click="AnnulerButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

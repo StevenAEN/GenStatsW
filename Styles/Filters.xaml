@@ -1,0 +1,25 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="TextBox">
+        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+        <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+        <Style.Triggers>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Text" Value="" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="False">
+                <Setter Property="Background" Value="LightGray" />
+                <Setter Property="Foreground" Value="DarkGray" />
+                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

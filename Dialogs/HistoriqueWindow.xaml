@@ -1,0 +1,69 @@
+﻿<Window x:Class="GenStatsW.Dialogs.HistoriqueWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Historique des commandes fournisseur" Height="450" Width="800"
+        WindowStyle="ThreeDBorderWindow" ResizeMode="CanResizeWithGrip">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="Logo" UriSource="pack://application:,,,/ressources/logo_fixed.png" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/Historique.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0.7,1">
+            <GradientStop Offset="0" Color="#1E2124" />
+            <GradientStop Offset="1" Color="#1E2124" />
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <!-- New RowDefinition -->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="{StaticResource Logo}" Width="63" Height="63" VerticalAlignment="Center" Margin="10" />
+            <TextBlock Grid.Column="1" Text="GenStats" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" />
+            <TextBlock Grid.Column="2" Text="Historique des commandes" FontSize="16" Foreground="White" VerticalAlignment="Center" Margin="10,0,10,0" />
+            <Rectangle Grid.ColumnSpan="3" Height="2" Fill="White" VerticalAlignment="Bottom" />
+        </Grid>
+
+        <ComboBox x:Name="comboBoxCommandes"
+                  Grid.Row="1"
+                  Margin="10"
+                  DisplayMemberPath="NomCommande"
+                  SelectedValuePath="Articles"
+                  SelectionChanged="ComboBoxCommandes_SelectionChanged" 
+                  Style="{StaticResource ComboBoxStyle}" />
+
+        <DataGrid x:Name="dataGridArticles"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  Margin="10"
+                  Height="300"
+                  IsReadOnly="True"
+                  Style="{StaticResource DataGridStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Article" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Prix unitaire" Binding="{Binding PrixUnitaire, StringFormat={}{0} €}" />
+                <DataGridTextColumn Header="Quantité" Binding="{Binding Quantite}" />
+                <DataGridTextColumn Header="Sous-total" Binding="{Binding SousTotal, StringFormat={}{0} €}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
