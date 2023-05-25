@@ -19,12 +19,14 @@ using System.Windows.Controls;
 using System.Diagnostics;
 using System.Net.Mail;
 using System.Net;
-
-
+using System.Runtime.InteropServices;
+using System.Windows.Input;
+using System.Configuration;
 namespace GenStatsW
 {
     public partial class Gestionnaire : Window, INotifyPropertyChanged
     {
+
         private MySqlConnection conn;
 
         public MySQLQuerys querys;
@@ -252,22 +254,43 @@ namespace GenStatsW
                 {
                     try
                     {
-                        MailMessage mail = new MailMessage();
-                        SmtpClient smtpClient = new SmtpClient("smtp.mail.ovh.net", 587);
+                        string smtpServer = ConfigurationManager.AppSettings["SmtpServer"] ?? string.Empty;
+                        int port;
+                        if (int.TryParse(ConfigurationManager.AppSettings["Port"], out port))
+                        {
+                            string email = ConfigurationManager.AppSettings["Email"] ?? string.Empty;
+                            string password = ConfigurationManager.AppSettings["Password"] ?? string.Empty;
 
-                        mail.From = new MailAddress("genstats@stevenbarbe.fr");
-                        mail.To.Add(mailFournisseur);
-                        mail.Subject = subject;
-                        mail.Body = body;
-                        mail.Attachments.Add(new Attachment(filePath));
-                        mail.IsBodyHtml = true; // specify that the body is HTML
-                        mail.Body = body;
-                        smtpClient.Credentials = new NetworkCredential("genstats@stevenbarbe.fr", "v4LD22aetGj28W");
-                        smtpClient.EnableSsl = true;
+                            if (!string.IsNullOrEmpty(smtpServer) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+                            {
+                                // Utilisez les valeurs récupérées comme nécessaire
+                                // Par exemple :
+                                MailMessage mail = new MailMessage();
+                                SmtpClient smtpClient = new SmtpClient(smtpServer, port);
 
-                        smtpClient.Send(mail);
+                                mail.From = new MailAddress(email);
+                                mail.To.Add(mailFournisseur);
+                                mail.Subject = subject;
+                                mail.Body = body;
+                                mail.Attachments.Add(new Attachment(filePath));
+                                mail.IsBodyHtml = true; // Spécifie que le corps est au format HTML
 
-                        MessageBox.Show("Le bon de commande a été envoyé par e-mail.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                                smtpClient.Credentials = new NetworkCredential(email, password);
+                                smtpClient.EnableSsl = true;
+
+                                smtpClient.Send(mail);
+
+                                MessageBox.Show("Le bon de commande a été envoyé par e-mail.", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Les informations de configuration SMTP sont incorrectes ou manquantes.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Le port SMTP spécifié dans la configuration est invalide.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -571,7 +594,7 @@ namespace GenStatsW
                 GenererBonDeCommande(CommandesFournisseursDataTable);
 
                 int commandeId = int.Parse(CommandeId.Text);
-                querys.ValiderCommande(commandeId, this.loginWindow.UserId ?? default);
+                querys.ValiderCommande(commandeId, this.loginWindow?.UserId ?? default);
 
                 CommandesFournisseursDataTable.Clear();
                 CommandesFournisseursDataTable.AcceptChanges();

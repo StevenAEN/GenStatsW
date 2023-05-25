@@ -31,17 +31,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="{StaticResource Logo}" Width="63" Height="63" VerticalAlignment="Center" Margin="10" />
-            <TextBlock Grid.Column="1" Text="GenStats" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" />
-            <TextBlock Grid.Column="2" Text="Historique des commandes" FontSize="16" Foreground="White" VerticalAlignment="Center" Margin="10,0,10,0" />
-            <Rectangle Grid.ColumnSpan="3" Height="2" Fill="White" VerticalAlignment="Bottom" />
-        </Grid>
+        <StackPanel Grid.Row="0" Margin="10">
+            <Image Source="{StaticResource Logo}" Width="63" Height="63" VerticalAlignment="Center" Margin="10" />
+            <TextBlock Text="GenStats" FontSize="30" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0" />
+            <TextBlock Text="Historique des commandes" FontSize="16" Foreground="White" VerticalAlignment="Center" Margin="10,0,10,0" />
+        </StackPanel>
 
         <ComboBox x:Name="comboBoxCommandes"
                   Grid.Row="1"
