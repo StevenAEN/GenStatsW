@@ -5,6 +5,7 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>ressources\logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,11 +14,16 @@
     <None Remove="ressources\fournisseur_icon.png" />
     <None Remove="ressources\lock.png" />
     <None Remove="ressources\loginWindow.png" />
+    <None Remove="ressources\logo.ico" />
     <None Remove="ressources\logo.png" />
     <None Remove="ressources\logo_fixed.png" />
     <None Remove="ressources\orders_icon.png" />
     <None Remove="ressources\stats_icon.png" />
     <None Remove="ressources\truck_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ressources\logo.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +51,7 @@
     <Resource Include="ressources\fournisseur_icon.png" />
     <Resource Include="ressources\lock.png" />
     <Resource Include="ressources\loginWindow.png" />
+    <Resource Include="ressources\logo.ico" />
     <Resource Include="ressources\logo.png" />
     <Resource Include="ressources\logo_fixed.png" />
     <Resource Include="ressources\orders_icon.png" />
